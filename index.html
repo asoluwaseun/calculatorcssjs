@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Ow-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0" >
+    <title>Calculator</title>
+    <!--Style Sheet For The Calculator App-->
+    <style>
+        /** Styles the whole table **/
+        table{
+            margin-top: 50px;
+            margin-bottom: 50px;
+            border: 40px #5F5F5F;
+            border-radius: 10px;
+            width: 50px;
+            padding: 0;
+            background-color: #77797a;
+            height: 300px;
+            text-decoration: none;
+        }
+
+        /** Styles the whole columns in the table **/
+        td{
+            text-align: center;
+        }
+
+        /** Styles the tags with "INPUT" **/
+        input{
+            background-color: #c5ffd2;
+            text-align: right;
+            font-size: 20px;
+            color: black;
+            width: 100%;
+            height: 40px;
+            border: 10px;
+            border-radius: 10px;
+        }
+
+        /** Styles the tags with "INPUT" and type "BUTTON" **/
+        input[type=button]{
+            text-align: center;
+            border: 10px;
+            background-color: #C3D0FF;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+        }
+
+        /** Describes the style that happens onmouseover on the tags with "INPUT" and type "BUTTON" **/
+        input[type=button]:hover{
+            background-color: #FFE793 !important;
+        }
+
+        /** Styles the id with "CE" this is basically for the "CE" button **/
+        #ce,#on{
+            background-color: #FEB89A;
+        }
+
+        /** Describes the style that happens onmouseover on the ids with "CE" this is basically for the "CE" button **/
+        #ce:hover,#on:hover{
+            background-color: #FF6363 !important;
+        }
+
+        /** Styles the classes with "CE" this is basically for the "CE" button **/
+        .ce{
+            background-color: #9EFFA7 !important;
+        }
+    </style>
+</head>
+<body>
+<!--JavaScript Syntax For The Calculator App-->
+<script>
+    // code that determines what happens when you click on the CE buttons
+    function ce() {
+        document.getElementById("display").value = "0";
+        ce()
+    }
+
+    // code that determines what happens when mouse leaves CE buttons
+    function c() {
+        document.getElementById("display").value = "";
+    }
+
+    // code that determines what happens when the equals to button is clicked
+    // it parses the strings in the display to integers and evaluates it to give a new output on the display
+    function equal() {
+        display.value = parseInt(eval(display.value));
+    }
+
+    // code that adds the + symbol to the display to denote addition
+    function add() {
+        display.value += '+';
+    }
+
+    // code that adds the - symbol to the display to denote subtraction
+    function subtract() {
+        display.value += '-';
+    }
+
+    // code that adds the * symbol to the display to denote multiplication
+    function multiply() {
+        display.value += '*';
+    }
+
+    // code that adds the / symbol to the display to denote division
+    function divide() {
+        display.value += '/';
+    }
+
+    // I have not implemented this code but it will be useful for toggling the negative symbol
+    // in front of digits in the display so I will comment it too
+    function negative() {
+        document.getElementById('display').value = "-";
+    }
+
+    // code that adds any digit that is being clicked on to the display
+    function number(a){
+        document.getElementById('display').value += a;
+    }
+
+    // code that finds the squareroot of any number in the display that is greater than zero
+    function sqrt() {
+        let a = parseInt(document.getElementById("display").value);
+        //conditional statement that makes the squareroot function work only when the input is greater than zero
+        if (a >= 0) {
+            sqrt = Math.sqrt(a);
+            document.getElementById("display").value = sqrt;}
+        else{
+            document.getElementById("display").value = "Get OUT!!!";
+        };
+    }
+
+    // code that finds the percentage of any number in the display
+    function percent() {
+        let a = parseInt(document.getElementById("display").value);
+        percent  = a / 100;
+        document.getElementById("display").value =  percent;
+    }
+
+    // code that finds the inverse of any number in the display
+    function inverse() {
+        let a = parseInt(document.getElementById("display").value);
+        inverse = 1 / a;
+        document.getElementById("display").value =  inverse;
+
+    }
+
+    // code that finds the square of any number in the display
+    function square()
+    {
+        let a = parseInt(document.getElementById("display").value);
+        square = a * a;
+        document.getElementById("display").value =  square;
+    }
+</script>
+<!--The Main Content Of The Calculator-->
+<form>
+    <table  cellspacing="10px" cellpadding="0px" align="center">
+        <tr>
+            <td colspan="5"><input type="text" value="0" disabled id="display"></td>
+        </tr>
+        <tr>
+            <td><input type="button" id="on" onclick="ce()" onmouseleave="c()" value="ON"></td>
+            <td><input type="button" class="ce" value="MC"></td>
+            <td><input type="button" class="ce" value="M+"></td>
+            <td><input type="button" class="ce" value="M-"></td>
+            <td><input type="button" id="ce" onclick="ce()" onmouseleave="c()" value="CE"></td>
+        </tr>
+        <tr>
+            <td><input type="button" onclick="number(7)" value="7"></td>
+            <td><input type="button" onclick="number(8)" value="8"></td>
+            <td><input type="button" onclick="number(9)" value="9"></td>
+            <td><input type="button" class="ce" onclick="divide()" value="&div;"></td>
+            <td><input type="button" class="ce" onclick="sqrt()" value="&radic;"></td>
+        </tr>
+        <tr>
+            <td><input type="button" onclick="number(4)" value="4"></td>
+            <td><input type="button" onclick="number(5)" value="5"></td>
+            <td><input type="button" onclick="number(6)" value="6"></td>
+            <td><input type="button" class="ce" onclick="multiply()" value="x"></td>
+            <td><input type="button" class="ce" onclick="percent()" value="&percnt;"></td>
+        </tr>
+        <tr>
+            <td><input type="button" onclick="number(1)" value="1"></td>
+            <td><input type="button" onclick="number(2)" value="2"></td>
+            <td><input type="button" onclick="number(3)" value="3"></td>
+            <td><input type="button" class="ce" onclick="subtract()" value="-"></td>
+            <td><input type="button" class="ce" onclick="inverse()" value="1&frasl;x"></td>
+        </tr>
+        <tr>
+            <td><input type="button" onclick="number(0)" value="0"></td>
+            <td><input type="button" onclick="display.value += '.'" value="."></td>
+            <td><input type="button" class="ce" onclick="square()" value="x&sup2;"></td>
+            <td><input type="button" class="ce" onclick="add()" value="+"></td>
+            <td><input type="button" class="ce" onclick="equal()" value="="></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
